@@ -50,6 +50,10 @@ export default class Web {
             response.send("OK");
         })
 
+        app.get("/api/stats/ping", (request, response) => {
+            response.send(JSON.stringify(Object.fromEntries(discord.stats)));
+        })
+
         this.app = app;
 
         app.listen(config.web.port, () => {

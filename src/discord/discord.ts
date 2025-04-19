@@ -37,12 +37,14 @@ export default class Discord {
 			commands.rest.push(command.data.toJSON());
 		}
 
-		this.client = client
+		this.client = client;
 		this.commands = commands;
+		this.stats = new Map<number, number>();
 
 		client.login(token);
 	}
 
 	client: Client<boolean>;
 	commands: { collection: Collection<string, Command>; rest: RESTPostAPIChatInputApplicationCommandsJSONBody[]; };
+	stats: Map<number, number>;
 }

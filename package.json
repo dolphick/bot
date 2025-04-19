@@ -1,0 +1,32 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "discord bot",
+  "homepage": "https://github.com/dolphick/bot#readme",
+  "bugs": {
+    "url": "https://github.com/dolphick/bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolphick/bot.git"
+  },
+  "license": "ISC",
+  "author": "Dolphick",
+  "type": "commonjs",
+  "main": "main.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build & npm run start develop",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "discord-api-types": "^0.37.120",
+    "discord.js": "^14.18.0",
+    "express": "^5.1.0",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1"
+  }
+}

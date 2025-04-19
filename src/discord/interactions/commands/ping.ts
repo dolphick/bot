@@ -6,5 +6,5 @@ module.exports = {
 		.setDescription("ping!"),
 	async execute(interaction: CommandInteraction) {
 		await interaction.reply(`Pong! ${interaction.client.ws.ping}ms`);
-	},
+	}
 };

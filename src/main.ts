@@ -1,39 +1,7 @@
-import { Client, Collection } from "discord.js";
 import Config from "../config.json";
-import fs from "fs";
-import path from "path";
-import { Command } from "./types";
-import { RESTPostAPIChatInputApplicationCommandsJSONBody } from "discord-api-types/v10";
+import Discord from "./discord/discord";
+import Web from "./web/web";
 
-let token = Config.discord.token.main;
-if (process.argv[2] === "develop") {
-    token = Config.discord.token.develop
-}
-
-const client = new Client({intents: []});
-
-// イベント処理読み込み
-const eventsPath = path.join(__dirname, "events");
-const eventFiles = fs.readdirSync(eventsPath);
-for (const file of eventFiles) {
-	const event = require(path.join(eventsPath, file));
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	}
-    else {
-		client.on(event.name, (...args) => event.execute(...args));
-	}
-}
-
-// スラッシュコマンド読み込み
-export const commands = {collection: new Collection<string, Command>(), rest: new Array<RESTPostAPIChatInputApplicationCommandsJSONBody>};
-const commandsPath = path.join(__dirname, "interactions/commands");
-const commandFiles = fs.readdirSync(commandsPath);
-for (const file of commandFiles) {
-    const command: Command = require(path.join(commandsPath, file));
-    commands.collection.set(command.data.name, command);
-    commands.rest.push(command.data.toJSON());
-}
-
-
-client.login(token);
+export const config = Config;
+export const discord = new Discord();
+export const web = new Web();

@@ -6,32 +6,35 @@ export default class Web {
     constructor() {
         const app = express();
 
+        app.use(express.static("./src/web/public/"));
+
         app.get("/api/ping", (request, response) => {
             response.send(JSON.stringify({ping: discord.client.ws.ping}));
         });
 
-        app.get("/api/status/online", (request, response) => {
+        app.post("/api/status/online", (request, response) => {
             discord.client.user?.setStatus("online");
             response.send("OK");
         })
 
-        app.get("/api/status/idle", (request, response) => {
+        app.post("/api/status/idle", (request, response) => {
             discord.client.user?.setStatus("idle");
             response.send("OK");
         })
 
-        app.get("/api/status/dnd", (request, response) => {
+        app.post("/api/status/dnd", (request, response) => {
             discord.client.user?.setStatus("dnd");
             response.send("OK");
         })
 
-        app.get("/api/status/invisible", (request, response) => {
+        app.post("/api/status/invisible", (request, response) => {
             discord.client.user?.setStatus("invisible");
             response.send("OK");
         })
 
         app.post("/api/activity/playing", (request, response) => {
-            discord.client.user?.setActivity(request.body.JSON.name, {type: ActivityType.Playing})
+            console.log(request.body);
+            discord.client.user?.setActivity(request.body["name"], {type: ActivityType.Playing})
             response.send("OK");
         })
 

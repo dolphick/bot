@@ -11,7 +11,7 @@ export default class Web {
         app.use(express.json());
 
         app.get("/api/ping", (request, response) => {
-            response.send(JSON.stringify({ping: discord.client.ws.ping}));
+            response.json({ping: discord.client.ws.ping});
         });
 
         app.post("/api/status/online", (request, response) => {
@@ -55,7 +55,7 @@ export default class Web {
         })
 
         app.get("/api/stats/ping", (request, response) => {
-            response.send(JSON.stringify(Object.fromEntries(discord.stats)));
+            response.json(Object.fromEntries(discord.stats));
         })
 
         this.app = app;

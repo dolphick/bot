@@ -32,9 +32,9 @@ function loadClientInformation() {
     xhr.send();
     xhr.onload = () => {
         if (xhr.readyState === xhr.DONE) {
-            const user = JSON.parse(xhr.responseText);
-            const element = document.getElementById("user");
-            element.innerHTML = `<div style="display: flex;"><img src="${user.avatar_url}" alt="Avatar" style="margin: 8px;"><span>Name: ${user.username}#${user.discriminator}<br>ID: ${user.id}</span><div>`;
+            const client = JSON.parse(xhr.responseText);
+            const element = document.getElementById("client_information");
+            element.innerHTML = `<div style="display: flex;"><img src="${client.avatar_url}" alt="Avatar" style="margin: 8px;"><span>Name: ${client.username}#${client.discriminator}<br>ID: ${client.id}</span><div>`;
         }
     }
 }

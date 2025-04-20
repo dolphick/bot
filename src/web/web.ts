@@ -59,7 +59,7 @@ export default class Web {
         })
 
         app.get("/api/@me", (request, response) => {
-            const user = {
+            const information = {
                 avatar_url: discord.client.user?.avatarURL(),
                 discriminator: discord.client.user?.discriminator,
                 display_name: discord.client.user?.displayName,
@@ -67,7 +67,7 @@ export default class Web {
                 id: discord.client.user?.id,
                 username: discord.client.user?.username
             }
-            response.json(user);
+            response.json(information);
         })
 
         this.app = app;

@@ -5,24 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
         <script src="script.js"></script>
-        <link rel="stylesheet" href="style.css">
     </head>
     <body style="color: white; background-color: #1f1f1f;">
         <div style="display: flex;">
-            <span style="margin: 10px;">
+            <span style="margin: 10px; padding: 5px; border: solid;">
                 <h1>Status</h1>
                 <Button style="color: white; background-color: #40a258; width: 64px; height: 64px; border-radius: 50%;" onclick="changeStatus('online');">Online</Button>
                 <Button style="color: white; background-color: #cc954c; width: 64px; height: 64px; border-radius: 50%;" onclick="changeStatus('idle');">Idle</Button>
                 <Button style="color: white; background-color: #d83a41; width: 64px; height: 64px; border-radius: 50%;" onclick="changeStatus('dnd');">DND</Button>
                 <Button style="color: white; background-color: #82838b; width: 64px; height: 64px; border-radius: 50%;" onclick="changeStatus('invisible');">Invisible</Button>
             </span>
-            <span style="margin: 10px;">
+            <span style="margin: 10px; padding: 5px; border: solid;">
                 <h1>Activity</h1>
                 <input type="radio" name="activity_type" id="playing" checked><label for="playing">Playing</label>
                 <input type="radio" name="activity_type" id="streaming"><label for="streaming">Streaming</label><br>
                 <input type="radio" name="activity_type" id="listening"><label for="listening">Listening</label>
                 <input type="radio" name="activity_type" id="watching"><label for="watching">Watching</label><br>
-                <input type="text" style="width: 256px;"><br>
+                <input type="text" style="width: 256px;" id="activity_name"><br>
                 <button style="width: 100%;" onclick="changeActivity();">Change</button>
             </span>
         </div>

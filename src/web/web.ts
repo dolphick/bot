@@ -7,6 +7,8 @@ export default class Web {
         const app = express();
 
         app.use(express.static("./src/web/public/"));
+        app.use(express.urlencoded({extended: true}));
+        app.use(express.json());
 
         app.get("/api/ping", (request, response) => {
             response.send(JSON.stringify({ping: discord.client.ws.ping}));
@@ -33,23 +35,22 @@ export default class Web {
         })
 
         app.post("/api/activity/playing", (request, response) => {
-            console.log(request.body);
-            discord.client.user?.setActivity(request.body["name"], {type: ActivityType.Playing})
+            discord.client.user?.setActivity(request.body.name, {type: ActivityType.Playing})
             response.send("OK");
         })
 
         app.post("/api/activity/streaming", (request, response) => {
-            discord.client.user?.setActivity(request.body.JSON.name, {type: ActivityType.Streaming})
+            discord.client.user?.setActivity(request.body.name, {type: ActivityType.Streaming})
             response.send("OK");
         })
 
         app.post("/api/activity/listening", (request, response) => {
-            discord.client.user?.setActivity(request.body.JSON.name, {type: ActivityType.Listening})
+            discord.client.user?.setActivity(request.body.name, {type: ActivityType.Listening})
             response.send("OK");
         })
 
         app.post("/api/activity/watching", (request, response) => {
-            discord.client.user?.setActivity(request.body.JSON.name, {type: ActivityType.Watching})
+            discord.client.user?.setActivity(request.body.name, {type: ActivityType.Watching})
             response.send("OK");
         })
 

@@ -58,6 +58,18 @@ export default class Web {
             response.json(Object.fromEntries(discord.stats));
         })
 
+        app.get("/api/@me", (request, response) => {
+            const user = {
+                avatar_url: discord.client.user?.avatarURL(),
+                discriminator: discord.client.user?.discriminator,
+                display_name: discord.client.user?.displayName,
+                global_name: discord.client.user?.globalName,
+                id: discord.client.user?.id,
+                username: discord.client.user?.username
+            }
+            response.json(user);
+        })
+
         this.app = app;
 
         app.listen(config.web.port, () => {

@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
+    loadClientInformation();
     loadPingStats();
 })
 
@@ -23,6 +24,19 @@ function changeActivity() {
     xhr.open("POST", `/api/activity/${activity_type}`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify({name: name}));
+}
+
+function loadClientInformation() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/api/@me");
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.readyState === xhr.DONE) {
+            const user = JSON.parse(xhr.responseText);
+            const element = document.getElementById("user");
+            element.innerHTML = `<div style="display: flex;"><img src="${user.avatar_url}" alt="Avatar" style="margin: 8px;"><span>Name: ${user.username}#${user.discriminator}<br>ID: ${user.id}</span><div>`;
+        }
+    }
 }
 
 function loadPingStats() {
